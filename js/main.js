@@ -10,7 +10,18 @@ form.addEventListener('submit', function(e){
     const altura = Number(inputAltura.value)
 
     const imc = calculaIMC(peso, altura);
-    alert(imc);
+    const nivel = nivelImc(imc);
+
+    if(!peso){
+        alert("Peso Inválido!");
+    }
+    else if(!altura){
+        alert("Altura inválida")
+    }else{
+        alert(`IMC: ${imc.toFixed(2)}, Nível ${nivel}`);
+    }
+
+    
 })
 
 function calculaIMC(peso, altura){
@@ -18,5 +29,22 @@ function calculaIMC(peso, altura){
 }
 
 function nivelImc(imc){
-    const niveis = []
+    const niveis = ['abaixo do peso',  'normal', 'sobrepeso', 
+    'obesidade','obesidade grave']
+
+    if(imc > 40){
+        return niveis[4]
+    }
+    if(imc > 29.9){
+        return niveis[3]
+    }
+    if(imc > 24.9){
+        return niveis[2]
+    }
+    if(imc > 18.5){
+        return niveis[1]
+    }
+    if(imc < 18.5){
+        return niveis[0]
+    }
 }
